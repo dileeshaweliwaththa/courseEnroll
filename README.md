@@ -35,6 +35,9 @@ CREATE | READ | UPDATE | DELETE
 
 # In Screen Snaps
 
+## Database
+![image](https://user-images.githubusercontent.com/64683688/153201305-1bbe5b96-84f5-44a6-8c40-558f4bc0ea7d.png)
+
 ## Dashboard
 ![image](https://user-images.githubusercontent.com/64683688/153196819-cc24c487-6e70-4d55-b374-e738f2497318.png)
 
