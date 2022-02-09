@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MANAGE UNDERGRADS</title>
+    <link rel="stylesheet" type="text/javascript" th:href="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <style>
+        body{
+            height: 100vh;
+        }
+        .bg-img {
+            background: rgb(2,0,36);
+            background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.3925945378151261) 57%),url("https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+<div class="bg-img"align = "center">
+    <div class="container text-center">
+        <br><h2 style="font-size: 50px;"><b>ASSIGN COURSES</b></h2><br>
+
+        <div class="row">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-8">
+                <button type="button" class="mr-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add New</button>
+                <div>
+                    <div th:if = "${message}" class="alert alert-success text-center">
+                        [[${message}]]
+                    </div>
+
+                    <form th:action="@{/cours/assign/confirm}" method="post" th:object="${undergrad}" style="max-width: 500px; margin: 0 auto">
+                        <input type="hidden" th:field="*{undId}">
+                        <div class="border border-secondary rounded p-3">
+                            <div class="form-group row m-2">
+                                <label class="col-sm-4 col-form-label">SELECT COURSES:</label>
+                                <ul class="list-group" th:each="cours : ${allcourses}">
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" name="courses" th:value="${cours.csId}" th:text="${cours.csname}">
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary m-2">SAVE</button>
+                                <button type="button" class="btn btn-danger m-2" onclick="cancelForm()">CANCEL</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-dark">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Course Name</th>
+                            <th>Course Credit</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <th:block th:each="course : ${allcourses}">
+                            <tr>
+                                <td>[[${course.csId}]]</td>
+                                <td>[[${course.csname}]]</td>
+                                <td>
+                                    <a class="h4 mr-3 btn btn-secondary btn-sm" th:href="@{'/cours/edit/' + ${course.csId}}">Edit</a>
+                                    <a class="h4 mr-3 btn btn-danger btn-sm" th:href="@{'/cours/delet/' + ${course.csId}}">Delete</a>
+                                </td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                    <a class="h4 mr-3 btn btn-secondary btn-sm" th:href="@{'/'}">BACK</a>
+                </div>
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">[[${pageTitle}]]</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+    $('#addModal').on('show.bs.modal', function () {
+        $.get("/modals/modal1", function (data) {
+            $('#exampleModal1').find('.modal-body').html(data);
+        })
+    });
+
+    $('#addModal2').on('show.bs.modal', function () {
+        var name = prompt("Please enter your name", "John Doe");
+        $.get("/modals/modal2?name=" + name, function (data) {
+            $('#exampleModal2').find('.modal-body').html(data);
+        })
+    })
+
+    function cancelForm(){
+        window.location = "[[@{/cours}]]";
+    }
+</script>
+
+</body>
+</html>

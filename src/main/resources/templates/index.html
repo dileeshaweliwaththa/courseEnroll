@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DASHBOARD</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        * {
+            margin: 0;
+        }
+
+        .container-fluid {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+        }
+
+        .bg-img {
+            background: rgb(2, 0, 36);
+            background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.3925945378151261) 57%), url(https://images.pexels.com/photos/925743/pexels-photo-925743.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-img">
+
+    <div class="container-fluid">
+        <div class="jumbotron text-center" style="background-color:#debe5e;">
+            <h1 class="display-2"><b>WELCOME!</b></h1><br>
+            <h4 class="display-4"><b>Courses & Lectureres Allocation</b></h4>
+        </div>
+        <br><br><br>
+        <div class="row">
+
+            <div class="col-sm-3 pt-3 "></div>
+            <div class="col-sm-3 pt-3 shadow-lg p-3 ">
+                <div class="card text-white text-center bg-secondary" >
+                    <div class="card-header">
+                        <span class="badge bg-success">Featured</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">UNDERGRADUATES DETAILS</h4><br>
+                        <a class="card-link btn btn-primary" th:href="@{/underg}">View</a>
+                    </div>
+                    <div class="card-footer text-white">
+                        | ADD | EDIT | VIEW | DELETE | ASSIGN |
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 pt-3 shadow-lg p-3 ">
+                <div class="card text-white text-center bg-secondary " >
+                    <div class="card-header">
+                        <span class="badge bg-success">Featured</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">LECTURE DETAILS</h4><br>
+                        <a class="card-link btn btn-primary" th:href="@{/lect}">View</a>
+                    </div>
+                    <div class="card-footer text-white">
+                       | ADD | EDIT | VIEW | DELETE |
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 pt-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 pt-3">
+            </div>
+            <div class="col-sm-6 pt-6">
+                <div class="card text-center text-white shadow-lg p-3 mb-5 bg-dark rounded" >
+                    <div class="card-body">
+                        <h4 class="card-title">COURSE DETAILS</h4><br>
+                        <a class="card-link btn btn-primary" th:href="@{/cours}">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 pt-3">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
